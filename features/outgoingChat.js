@@ -1,5 +1,6 @@
 const chatInput = document.querySelector("#chat-input");
 const chatContainer = document.querySelector(".chat-container");
+import { showTypingAnimation } from "./typingDots.js";
 
 let userText = null;
 
@@ -25,4 +26,5 @@ export const handleOutgoingChat = () => {
 
   const outgoingChatDiv = createElement(html, "outgoing");
   chatContainer.appendChild(outgoingChatDiv);
+  setTimeout(showTypingAnimation,500);
 };
