@@ -1,8 +1,0 @@
-[build]
-  functions = "netlify/functions"
-
-[[redirects]]
-  from = "/"
-  to = "https://fantastic-manatee-096881.netlify.app/"
-  status = 301
-  force = true
