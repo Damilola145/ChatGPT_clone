@@ -11,6 +11,21 @@ let messages = {
   history: [],
 };
 
+const stripMarkdown = (text) => {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/~~(.*?)~~/g, "$1")
+    .replace(/`{1,3}([^`]+)`{1,3}/g, "$1")
+    .replace(/^>\s?/gm, "")
+    .replace(/!\[.*?\]\(.*?\)/g, "")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/^(\d+)\.\s+/gm, "$1. ")
+    .replace(/^[-+*]\s+/gm, "- ");
+};
+
 export const getApiResponse = async (userText, typingDiv) => {
   if (!userText) return;
 
@@ -28,13 +43,13 @@ export const getApiResponse = async (userText, typingDiv) => {
 
     messages.history.push({ role: "model", parts: [{ text: botResponse }] });
 
-    console.log("Bot Response:", botResponse);
+    const cleanedResponse = stripMarkdown(botResponse);
 
     if (typingDiv && typingDiv.parentNode) {
       typingDiv.parentNode.removeChild(typingDiv);
     }
 
-    displayBotResponse(botResponse);
+    displayBotResponse(cleanedResponse);
   } catch (error) {
     console.error("Error fetching API response:", error);
 
