@@ -1,14 +1,14 @@
 const chatContainer = document.querySelector(".chat-container");
 
 const createElement = (html, className) => {
-    const chatDiv = document.createElement("div");
-    chatDiv.classList.add("chat", className);
-    chatDiv.innerHTML = html;
-    return chatDiv;
-  };
+  const chatDiv = document.createElement("div");
+  chatDiv.classList.add("chat", className);
+  chatDiv.innerHTML = html;
+  return chatDiv;
+};
 
 export const showTypingAnimation = () => {
-    const html = `<div class="chat-content">
+  const html = `<div class="chat-content typing">
                 <div class="chat-details">
                     <img src="images/chatbot.jpg" alt="chatbox-img">
                     <div class="typing-animation">
@@ -20,7 +20,8 @@ export const showTypingAnimation = () => {
                 <span class="material-symbols-rounded">content_copy</span>
             </div>`;
 
-            const outgoingChatDiv = createElement(html, "incoming");
-            chatContainer.appendChild(outgoingChatDiv);
+  const typingDiv = createElement(html, "incoming");
+  chatContainer.appendChild(typingDiv);
 
-}
+  return typingDiv;
+};
