@@ -17,7 +17,6 @@ export const showTypingAnimation = () => {
                         <div class="typing-dot" style="--delay:0.4s"></div>
                     </div>
                 </div>
-                <span class="material-symbols-rounded">content_copy</span>
             </div>`;
 
   const typingDiv = createElement(html, "incoming");
