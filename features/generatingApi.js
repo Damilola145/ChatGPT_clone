@@ -26,6 +26,16 @@ const stripMarkdown = (text) => {
     .replace(/^[-+*]\s+/gm, "- ");
 };
 
+const copyResponse = (copyBtn) => {
+  // Copies the text content of the response to the clipboard
+  const responseTextElement = copyBtn.parentElement.querySelector("p");
+  if (responseTextElement) {
+    navigator.clipboard.writeText(responseTextElement.textContent);
+    copyBtn.textContent = "done";
+    setTimeout(() => (copyBtn.textContent = "content_copy"), 1000);
+  }
+};
+
 export const getApiResponse = async (userText, typingDiv) => {
   if (!userText) return;
 
@@ -67,11 +77,16 @@ const displayBotResponse = (botResponse) => {
                        <img src="images/chatbot.jpg" alt="chatbot-img">
                        <p>${botResponse}</p>
                      </div>
-                     <span class="material-symbols-rounded">content_copy</span>
+                     <span class="material-symbols-rounded copy-btn">content_copy</span>
                    </div>`;
 
   const botChatDiv = document.createElement("div");
   botChatDiv.classList.add("chat", "incoming");
   botChatDiv.innerHTML = botHtml;
   chatContainer.appendChild(botChatDiv);
+
+  const copyBtn = botChatDiv.querySelector(".copy-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", () => copyResponse(copyBtn));
+  }
 };
