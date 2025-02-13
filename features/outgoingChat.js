@@ -1,8 +1,7 @@
 const chatInput = document.querySelector("#chat-input");
 const chatContainer = document.querySelector(".chat-container");
+import { getApiResponse } from "./generatingApi.js";
 import { showTypingAnimation } from "./typingDots.js";
-
-let userText = null;
 
 const createElement = (html, className) => {
   const chatDiv = document.createElement("div");
@@ -14,7 +13,7 @@ const createElement = (html, className) => {
 export const handleOutgoingChat = () => {
   if (!chatInput) return;
 
-  userText = chatInput.value.trim();
+  const userText = chatInput.value.trim();
   if (userText === "") return;
 
   const html = `<div class="chat-content">
@@ -26,5 +25,6 @@ export const handleOutgoingChat = () => {
 
   const outgoingChatDiv = createElement(html, "outgoing");
   chatContainer.appendChild(outgoingChatDiv);
-  setTimeout(showTypingAnimation,500);
+  const typingDiv = showTypingAnimation();
+  getApiResponse(userText, typingDiv);
 };
