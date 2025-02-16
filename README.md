@@ -20,6 +20,7 @@ HTML
 
 
 __Usage__
+
 Open the app in your browser
 Type a message in the chatbox and press send
 Get AI-generated responses in real time
