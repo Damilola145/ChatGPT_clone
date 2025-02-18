@@ -34,6 +34,9 @@ export const handleOutgoingChat = () => {
   getApiResponse(userText, typingDiv);
   localStorageFile();
 
+  chatInput.value = "";
+
+
 };
 
 
