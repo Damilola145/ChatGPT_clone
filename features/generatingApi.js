@@ -1,11 +1,15 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { loadDataFromLocalStorage, localStorageFile } from "./localStorage.js";
+
 
 const chatContainer = document.querySelector(".chat-container");
+
 
 const API_KEY = "AIzaSyDElkO4jG9A6wjm1-r2SfcBj7GhBCCFJX8";
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
 
 let messages = {
   history: [],
@@ -69,6 +73,8 @@ export const getApiResponse = async (userText, typingDiv) => {
 
     displayBotResponse("Oops! Something went wrong. Please try again.");
   }
+
+  
 };
 
 const displayBotResponse = (botResponse) => {
@@ -84,6 +90,7 @@ const displayBotResponse = (botResponse) => {
   botChatDiv.classList.add("chat", "incoming");
   botChatDiv.innerHTML = botHtml;
   chatContainer.appendChild(botChatDiv);
+  localStorageFile();
 
   const copyBtn = botChatDiv.querySelector(".copy-btn");
   if (copyBtn) {

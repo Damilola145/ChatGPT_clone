@@ -2,13 +2,11 @@
 
 const chatContainer = document.querySelector(".chat-container");
 
-
-export const loadDataFromLocalStorage = () => { 
+export const loadDataFromLocalStorage = (chatContainer) => { 
     chatContainer.innerHTML = localStorage.getItem("all-chats");
 }
-
-
 
 export const localStorageFile = () => {
   localStorage.setItem("all-chats", chatContainer.innerHTML);
 };
+
