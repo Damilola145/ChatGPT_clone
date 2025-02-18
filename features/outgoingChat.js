@@ -1,7 +1,11 @@
 const chatInput = document.querySelector("#chat-input");
 const chatContainer = document.querySelector(".chat-container");
 import { getApiResponse } from "./generatingApi.js";
+import { loadDataFromLocalStorage, localStorageFile } from "./localStorage.js";
 import { showTypingAnimation } from "./typingDots.js";
+
+
+loadDataFromLocalStorage(chatContainer);
 
 const createElement = (html, className) => {
   const chatDiv = document.createElement("div");
@@ -9,6 +13,7 @@ const createElement = (html, className) => {
   chatDiv.innerHTML = html;
   return chatDiv;
 };
+
 
 export const handleOutgoingChat = () => {
   if (!chatInput) return;
@@ -27,4 +32,8 @@ export const handleOutgoingChat = () => {
   chatContainer.appendChild(outgoingChatDiv);
   const typingDiv = showTypingAnimation();
   getApiResponse(userText, typingDiv);
+  localStorageFile();
+
 };
+
+
