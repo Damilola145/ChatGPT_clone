@@ -8,7 +8,7 @@ This is a simple ChatGPT clone that allows users to interact with an AI chatbot.
 **Features**
 
 User-friendly chat interface with
-AI-powered responses using OpenAI's API
+AI-powered responses using Gemini's API
 Simple and clean UI(with dark and light theme)
 
 __Technologies Used__
